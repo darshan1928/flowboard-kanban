@@ -1,18 +1,4 @@
-/**
- * Mock REST backend.
- *
- * This project targets a real backend exposing the endpoints listed in the
- * PRD (§7). Since no backend was in scope for this bench task, this module
- * simulates that same contract (async, latency, error shapes) on top of
- * localStorage so the app is fully functional standalone. Swap the calls in
- * `api/*.js` for real `fetch` calls against your backend when one exists —
- * feature slices never talk to localStorage directly, only to these
- * functions, so the swap is isolated to this file.
- *
- * NOTE: password is stored as-is here for demo purposes only. A real
- * backend MUST hash passwords (bcrypt/argon2) — never replicate this
- * approach server-side.
- */
+
 import { v4 as uuid } from "uuid";
 
 const DB_USERS = "flowboard_db_users";
