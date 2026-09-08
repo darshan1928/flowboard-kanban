@@ -1,0 +1,301 @@
+/* ---------------------------------------------------------
+   Design tokens
+   Palette chosen for a focused, low-noise productivity tool —
+   cool paper background, ink-navy chrome, warm amber action
+   color, and a distinct hue per Kanban stage (not a single
+   accent repeated everywhere).
+--------------------------------------------------------- */
+:root {
+  --ink-900: #14213d;
+  --ink-700: #1b2430;
+  --ink-500: #5b6472;
+  --ink-300: #97a1ad;
+  --paper: #eef1f4;
+  --paper-raised: #ffffff;
+  --line: #d7dce2;
+
+  --accent: #e8a33d;
+  --accent-ink: #5a3c0f;
+  --danger: #c0392b;
+  --danger-bg: #fbeae8;
+  --success: #4c9a6a;
+
+  --stage-backlog: #64748b;
+  --stage-todo: #3b6ea5;
+  --stage-ongoing: #e8a33d;
+  --stage-done: #4c9a6a;
+
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --shadow-card: 0 1px 2px rgba(20, 33, 61, 0.08), 0 1px 1px rgba(20, 33, 61, 0.04);
+  --shadow-raised: 0 8px 24px rgba(20, 33, 61, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink-700);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+label,
+.label {
+  font-family: var(--font-display);
+  color: var(--ink-900);
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+a {
+  color: var(--stage-todo);
+}
+
+/* Visible keyboard focus everywhere, incl. custom controls */
+:focus-visible {
+  outline: 2px solid var(--stage-todo);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------------- Layout primitives ---------------- */
+.app-shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-nav {
+  background: var(--ink-900);
+  color: #fff;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-nav .brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+}
+
+.top-nav nav {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.top-nav a,
+.top-nav button.linklike {
+  color: #cdd7e6;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.1rem;
+}
+
+.top-nav a.active,
+.top-nav a:hover,
+.top-nav button.linklike:hover {
+  color: #fff;
+}
+
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 3rem;
+}
+
+.auth-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.auth-card h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.auth-sub {
+  color: var(--ink-500);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  margin-bottom: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  font-family: var(--font-body);
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  background: #fff;
+  color: var(--ink-700);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--stage-todo);
+}
+
+.field.has-error input {
+  border-color: var(--danger);
+}
+
+.field-error {
+  color: var(--danger);
+  font-size: 0.78rem;
+}
+
+.field-hint {
+  color: var(--ink-500);
+  font-size: 0.78rem;
+}
+
+.btn {
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1.1rem;
+  font-size: 0.92rem;
+  transition: transform 0.06s ease, filter 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-700);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.form-error-banner {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.8rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.auth-switch {
+  margin-top: 1.25rem;
+  font-size: 0.88rem;
+  color: var(--ink-500);
+  text-align: center;
+}
+
+/* ---------------- Toast ---------------- */
+.toast {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink-900);
+  color: #fff;
+  padding: 0.65rem 1.1rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-raised);
+  font-size: 0.88rem;
+  z-index: 400;
+}
+
+.toast.error {
+  background: var(--danger);
+}
+
+.toast.success {
+  background: var(--success);
+}
+
+/* ---------------- Empty state ---------------- */
+.empty-state {
+  text-align: center;
+  color: var(--ink-500);
+  padding: 2.5rem 1rem;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+}
